@@ -3,9 +3,6 @@ package Entity;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- * Created by Vlad on 15.08.2016.
- */
 @Entity
 @Table(name = "bookings", schema = "booking_calendar")
 public class BookingsEntity {
