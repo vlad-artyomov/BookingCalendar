@@ -1,5 +1,7 @@
 package Entity;
 
+import DAO.BookingDAO;
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,12 +11,11 @@ import java.util.List;
 
 public class HibernateUtil {
     private static final SessionFactory ourSessionFactory;
+    private static final Logger log = Logger.getLogger(HibernateUtil.class);
 
     static {
         try {
-            ourSessionFactory = new Configuration().
-                    configure().
-                    buildSessionFactory();
+            ourSessionFactory = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);
         }
@@ -25,14 +26,10 @@ public class HibernateUtil {
     }
 
     public static void main(final String[] args) throws Exception {
-        final Session session = getSession();
-        try {
-            System.out.println("querying all the managed entities...");
-            List bookingsEntities = session.createCriteria(BookingsEntity.class).list();
-            for (Object entity : bookingsEntities)
-                System.out.println(((BookingsEntity) entity).getId());
-        } finally {
-            session.close();
-        }
+        log.info("querying all entities...");
+
+        List<Booking> bookingsEntities = BookingDAO.getInstance().getAll();
+        for (Booking entity : bookingsEntities)
+            System.out.println(entity.getId());
     }
 }

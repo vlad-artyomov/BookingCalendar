@@ -5,12 +5,13 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "bookings", schema = "booking_calendar")
-public class BookingsEntity {
+public class Booking {
     private int id;
     private Date dateFrom;
     private Date dateTo;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -45,7 +46,7 @@ public class BookingsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookingsEntity that = (BookingsEntity) o;
+        Booking that = (Booking) o;
 
         if (id != that.id) return false;
         if (dateFrom != null ? !dateFrom.equals(that.dateFrom) : that.dateFrom != null) return false;
