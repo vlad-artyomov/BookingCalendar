@@ -2,9 +2,7 @@ package BookingCalendar;
 
 import DAO.BookingDAO;
 import Entity.Booking;
-import Entity.HibernateUtil;
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,6 +16,9 @@ import java.util.List;
  */
 @Path("myresource")
 public class MyResource {
+
+    //private EntityManager em;
+    //persistence unit
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
